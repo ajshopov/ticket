@@ -5,6 +5,12 @@
 
     <ul class="actions">
         <li>
+            <%= link_to "New Tickete",
+            new_project_tickete_path(@project), #nested route
+            class: "new"
+            %>
+        </li>
+        <li>
             <%= link_to "Edit Project",
             edit_project_path(@project),
             class: "edit"
