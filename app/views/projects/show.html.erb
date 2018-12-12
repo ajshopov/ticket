@@ -28,3 +28,12 @@
 </header>
 
 <p><%= @project.description %></p>
+
+<ul>
+  <% @project.ticketes.each do |tickete| %>
+    <li>
+      #<%= tickete.id %> -
+      <%= link_to tickete.name, [@project, tickete] %>
+    </li>
+  <% end %>
+</ul>
