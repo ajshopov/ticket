@@ -20,6 +20,7 @@ RSpec.feature "Users can create new tickets" do
     click_button "Create Tickete"
 
     expect(page).to have_content "Tickete has not been created."
+<<<<<<< HEAD
     expect(page).to have_content "Name can't be blank"
     expect(page).to have_content "Description can't be blank"
   end
@@ -31,5 +32,9 @@ RSpec.feature "Users can create new tickets" do
 
     expect(page).to have_content "Tickete has not been created."
     expect(page).to have_content "Description is too short"
+=======
+    expect(page).to have_content "Name can't be blank."
+    expect(page).to have_content "Description can't be blank."
+>>>>>>> ac7ebfe523d6c345f08406ce98e37402ba743581
   end
 end
