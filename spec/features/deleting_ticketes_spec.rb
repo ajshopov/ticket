@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.feature "Users can delete ticketes" do
-  let(:project) { FactoryGirl.create(:project) }
-  let(:tickete) { FactoryGirl.create(:tickete, project: project) }
+  let(:project) { FactoryBot.create(:project) }
+  let(:tickete) { FactoryBot.create(:tickete, project: project) }
 
   before do
     visit project_tickete_path(project, tickete)
