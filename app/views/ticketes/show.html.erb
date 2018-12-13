@@ -20,5 +20,16 @@
     </ul>
   </header>
 
+  <table id="attributes">
+    <tr>
+      <th>Author:</th>
+      <td><%= @tickete.author.email %></td>
+    </tr>
+    <tr>
+      <th>Created:</th>
+      <td><%= time_ago_in_words(@tickete.created_at) %> ago</td>
+    </tr>
+  </table>
+
   <%= simple_format(@tickete.description) %>
 </div>

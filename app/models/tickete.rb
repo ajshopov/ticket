@@ -1,5 +1,7 @@
 class Tickete < ApplicationRecord
   belongs_to :project
-    validates :name, presence: true
-    validates :description, presence: true, length: { minimum: 10 }
+  belongs_to :author, class_name: "User" # assign author to the user model
+
+  validates :name, presence: true
+  validates :description, presence: true, length: { minimum: 10 }
 end
