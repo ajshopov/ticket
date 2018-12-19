@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     root 'application#index'
 
     resources :projects, only: [:new, :create, :destroy]
+    resources :users
   end
   root "projects#index"
   devise_for :users
