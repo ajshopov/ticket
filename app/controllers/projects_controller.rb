@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update] #set_project method is run only before show/edit/update/destroy actions
 
   def index
-    @projects = Project.all
+    @projects = policy_scope(Project)
   end
 
   def show
