@@ -4,11 +4,13 @@ class TicketesController < ApplicationController
 
   def new
     @tickete = @project.ticketes.build
+    authorize @tickete, :create?
   end
 
   def create
     @tickete = @project.ticketes.build(tickete_params)
     @tickete.author = current_user
+    authorize @tickete, :create?
 
     if @tickete.save
       flash[:notice] = "Tickete has been created."
