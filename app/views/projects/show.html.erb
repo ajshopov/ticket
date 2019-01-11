@@ -4,12 +4,14 @@
   <h1><%= @project.name %></h1>
 
   <ul class="actions">
-    <li>
-      <%= link_to "New Tickete",
-        new_project_tickete_path(@project), #nested route
-        class: "new"
-      %>
-    </li>
+    <% if policy(Tickete.new(project: @project)).create? %>
+      <li>
+        <%= link_to "New Tickete",
+          new_project_tickete_path(@project), #nested route
+          class: "new"
+        %>
+      </li>
+    <% end %>
     <% if policy(@project).update? %>
       <li>
         <%= link_to "Edit Project",

@@ -9,8 +9,6 @@ RSpec.describe TicketePolicy do
     let(:tickete) { FactoryBot.create(:tickete, project: project, author: user) }
 
     context "for anonymous users" do
-      let(:author) { nil }
-
       it { should_not permit_action :show }
       it { should_not permit_action :create }
     end
