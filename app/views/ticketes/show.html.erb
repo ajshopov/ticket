@@ -7,9 +7,11 @@
     <h2><%= @tickete.name %></h2>
 
     <ul class="actions">
-      <li>
-        <%= link_to "Edit Tickete", [:edit, @project, @tickete], class: "edit" %>
-      </li>
+      <% if policy(@tickete).update? %>
+        <li>
+          <%= link_to "Edit Tickete", [:edit, @project, @tickete], class: "edit" %>
+        </li>
+      <% end %>
       <li>
         <%= link_to "Delete Tickete",
         [@project, @tickete],
