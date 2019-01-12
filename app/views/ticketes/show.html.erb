@@ -12,13 +12,15 @@
           <%= link_to "Edit Tickete", [:edit, @project, @tickete], class: "edit" %>
         </li>
       <% end %>
-      <li>
-        <%= link_to "Delete Tickete",
-        [@project, @tickete],
-        method: :delete,
-        data: { confirm: "are you sure you want to delete this tickete?" },
-        class: "delete" %>
-      </li>
+      <% if policy(@tickete).destroy? %>
+        <li>
+          <%= link_to "Delete Tickete",
+          [@project, @tickete],
+          method: :delete,
+          data: { confirm: "are you sure you want to delete this tickete?" },
+          class: "delete" %>
+        </li>
+      <% end %>
     </ul>
   </header>
 
