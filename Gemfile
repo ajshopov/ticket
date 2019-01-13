@@ -18,6 +18,8 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'devise', '~> 4.5'
 gem 'pundit', '~> 1.1'
+
+gem 'carrierwave', '~> 0.11.2'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

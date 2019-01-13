@@ -38,4 +38,17 @@ RSpec.feature "Users can create new tickets" do
     expect(page).to have_content "Tickete has not been created."
     expect(page).to have_content "Description is too short"
   end
+
+  scenario "with an attachment" do
+    fill_in "Name", with: "Add documentation"
+    fill_in "Description", with: "Testing out attachments for ticketes"
+    attach_file "File", "spec/fixtures/speed.txt"
+    click_button "Create Tickete"
+
+    expect(page).to have_content "Tickete has been created."
+
+    within("#tickete .attachment") do
+      expect(page).to have_content "speed.txt"
+    end
+  end
 end
