@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_13_002412) do
+ActiveRecord::Schema.define(version: 2019_01_13_063109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachments", force: :cascade do |t|
+    t.string "file"
+    t.bigint "tickete_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tickete_id"], name: "index_attachments_on_tickete_id"
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
@@ -39,7 +47,6 @@ ActiveRecord::Schema.define(version: 2019_01_13_002412) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "author_id"
-    t.string "attachment"
     t.index ["author_id"], name: "index_ticketes_on_author_id"
     t.index ["project_id"], name: "index_ticketes_on_project_id"
   end
@@ -58,6 +65,7 @@ ActiveRecord::Schema.define(version: 2019_01_13_002412) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "attachments", "ticketes"
   add_foreign_key "roles", "projects"
   add_foreign_key "roles", "users"
   add_foreign_key "ticketes", "projects"

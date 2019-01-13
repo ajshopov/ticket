@@ -37,14 +37,15 @@
 
   <%= simple_format(@tickete.description) %>
 
-  
-  <% if @tickete.attachment.present? %>
-    <h4>Attachment</h4>
-    <div class="attachment">
-      <p>
-        <%= link_to File.basename(@tickete.attachment.url), @tickete.attachment.url %>
-        (<%= number_to_human_size(@tickete.attachment.size) %>)
-      </p>
+  <% if @tickete.attachments.any? %>
+    <h4>Attachments</h4>
+    <div class="attachments">
+      <% @tickete.attachments.each do |attachment| %>
+        <p>
+          <%= link_to File.basename(attachment.file.url), attachment.file.url %>
+          (<%= number_to_human_size(attachment.file.size) %>)
+        </p>
+      <% end %>
     </div>
   <% end %>
   
