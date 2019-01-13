@@ -1,7 +1,10 @@
 <%= simple_form_for([project, tickete]) do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
+
+  <%= image_tag(@tickete.attachment.url) if @tickete.attachment? %>
   <%= f.input :attachment, as: :file, label: "File" %>
+  <%= f.hidden_field :attachment_cache %>
 
   <%= f.button :submit, class: "btn-primary" %>
 <% end %>
