@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :show, :edit, :update] do
     resources :ticketes
   end
+  resources :attachments, only: [:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
