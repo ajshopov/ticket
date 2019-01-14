@@ -5,7 +5,7 @@ class TicketesController < ApplicationController
   def new
     @tickete = @project.ticketes.build
     authorize @tickete, :create?
-    3.times { @tickete.attachments.build }
+    @tickete.attachments.build
   end
 
   def create

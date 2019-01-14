@@ -41,6 +41,7 @@ gem 'jbuilder', '~> 2.5'
 gem "bootstrap-sass", "~> 3.3"
 gem "font-awesome-rails", "~> 4.3"
 gem 'simple_form', '~> 4.1'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 
 gem 'actionpack', '~> 5.0', '>= 5.0.0.1'
 
@@ -67,7 +68,7 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'factory_bot_rails', '~> 4.11', '>= 4.11.1'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 3.141'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end
