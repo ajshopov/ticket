@@ -1,3 +1,7 @@
+blockquote.comment{
+    font-size: 14px;
+}
+
 #attributes{
     @extend .table;
     @extend .table-condensed;

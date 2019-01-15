@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_13_063109) do
+ActiveRecord::Schema.define(version: 2019_01_15_014844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 2019_01_13_063109) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tickete_id"], name: "index_attachments_on_tickete_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "text"
+    t.bigint "tickete_id"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["tickete_id"], name: "index_comments_on_tickete_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -66,6 +76,8 @@ ActiveRecord::Schema.define(version: 2019_01_13_063109) do
   end
 
   add_foreign_key "attachments", "ticketes"
+  add_foreign_key "comments", "ticketes"
+  add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "roles", "projects"
   add_foreign_key "roles", "users"
   add_foreign_key "ticketes", "projects"
