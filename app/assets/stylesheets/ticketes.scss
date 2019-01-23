@@ -2,6 +2,16 @@ blockquote.comment{
     font-size: 14px;
 }
 
+.state{
+    @extend .label;
+    font-size: 12px;
+    padding: 0.3em 0.6em;
+}
+
+#ticketes li{
+    padding-bottom: 10px;
+}
+
 #attributes{
     @extend .table;
     @extend .table-condensed;
