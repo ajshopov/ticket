@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_23_094930) do
+ActiveRecord::Schema.define(version: 2019_01_24_044957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_01_23_094930) do
   create_table "states", force: :cascade do |t|
     t.string "name"
     t.string "color"
+    t.boolean "default", default: false
   end
 
   create_table "ticketes", force: :cascade do |t|
