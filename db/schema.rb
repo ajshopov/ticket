@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_24_044957) do
+ActiveRecord::Schema.define(version: 2019_01_26_221318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 2019_01_24_044957) do
     t.string "name"
     t.string "color"
     t.boolean "default", default: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "tags_ticketes", id: false, force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "tickete_id", null: false
+    t.index ["tag_id", "tickete_id"], name: "index_tags_ticketes_on_tag_id_and_tickete_id"
+    t.index ["tickete_id", "tag_id"], name: "index_tags_ticketes_on_tickete_id_and_tag_id"
   end
 
   create_table "ticketes", force: :cascade do |t|

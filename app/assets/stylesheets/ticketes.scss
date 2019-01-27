@@ -2,6 +2,23 @@ blockquote.comment{
     font-size: 14px;
 }
 
+.tag {
+  @extend .state;
+  @extend .label-info;
+  margin-right: 10px;
+
+  a {
+    color: white;
+
+    &.remove {
+      font-family: "FontAwesome";
+      @extend .fa-close;
+      margin-right: 0.5em;
+      text-decoration: none;
+    }
+  }
+}
+
 .state{
     @extend .label;
     font-size: 12px;

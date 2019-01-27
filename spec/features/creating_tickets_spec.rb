@@ -76,4 +76,17 @@ RSpec.feature "Users can create new tickets" do
       expect(page).to have_content "speed.txt"
     end
   end
+
+  scenario "with associated tags" do
+    fill_in "Name", with: "Non-standards compliance"
+    fill_in "Description", with: "does not look good"
+    fill_in "Tags", with: "browser visual"
+    click_button "Create Tickete"
+
+    expect(page).to have_content "Tickete has been created."
+    within("#tickete #tags") do
+      expect(page).to have_content "browser"
+      expect(page).to have_content "visual"
+    end
+  end
 end
