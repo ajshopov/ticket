@@ -44,7 +44,7 @@
     <% if @tickete.tags.any? %>
       <tr id="tags">
         <th>Tags:</th>
-        <td><%= render @tickete.tags %></td>
+        <td><%= render @tickete.tags, tickete: @tickete %></td>
       </tr>
     <% end %>
   </table>
