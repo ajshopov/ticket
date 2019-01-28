@@ -9,7 +9,13 @@ class TicketesController < ApplicationController
   end
 
   def create
-    @tickete = @project.ticketes.build(tickete_params)
+    @tickete = @project.ticketes.new
+    whitelisted_params = tickete_params
+    unless policy(@tickete).tag?
+      whitelisted_params.delete(:tag_names)
+    end
+
+    @tickete.attributes = whitelisted_params
     @tickete.author = current_user
     authorize @tickete, :create?
 
