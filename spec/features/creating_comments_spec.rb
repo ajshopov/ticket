@@ -50,4 +50,18 @@ RSpec.feature "Users can comment on ticketes" do
 
     expect(page).not_to have_select "State"
   end
+
+  scenario "when adding a new tag to a tickete" do
+    visit project_tickete_path(project, tickete)
+    expect(page).not_to have_content "bug"
+
+    fill_in "Text", with: "Adding the bug tag"
+    fill_in "Tags", with: "bug"
+    click_button "Create Comment"
+
+    expect(page).to have_content "Comment has been created."
+    within("#tickete #tags") do
+      expect(page).to have_content "bug"
+    end
+  end
 end

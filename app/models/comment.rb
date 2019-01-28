@@ -3,6 +3,7 @@ class Comment < ApplicationRecord
   belongs_to :state, optional: true
   belongs_to :tickete
   belongs_to :author, class_name: "User"
+  attr_accessor :tag_names
 
   scope :persisted, lambda { where.not(id: nil) }
   
@@ -11,6 +12,7 @@ class Comment < ApplicationRecord
 
   before_create :set_previous_state
   after_create :set_tickete_state
+  after_create :associate_tags_with_tickete
 
   private
 
@@ -21,5 +23,13 @@ class Comment < ApplicationRecord
   def set_tickete_state
     tickete.state = state
     tickete.save!
+  end
+
+  def associate_tags_with_tickete
+    if tag_names
+      tag_names.split.each do |name|
+        tickete.tags << Tag.find_or_create_by(name: name)
+      end
+    end
   end
 end
