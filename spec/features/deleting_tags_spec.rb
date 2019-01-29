@@ -1,9 +1,5 @@
 require 'rails_helper'
 
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
-end
-
 RSpec.feature "Users can delete unwanted tags from a tickete" do
   let(:user) { FactoryBot.create(:user) }
   let(:project) { FactoryBot.create(:project) }

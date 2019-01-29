@@ -21,7 +21,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :projects, only: [:index, :show, :edit, :update] do
-    resources :ticketes
+    resources :ticketes do
+      collection do
+        get :search
+      end
+    end
   end
 
   resources :ticketes, only: [] do

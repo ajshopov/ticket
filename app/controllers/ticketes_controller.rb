@@ -2,6 +2,16 @@ class TicketesController < ApplicationController
   before_action :set_project
   before_action :set_tickete, only: [:show, :edit, :update, :destroy]
 
+  def search
+    authorize @project, :show?
+    # if params[:search].present?
+    #   @ticketes = @project.ticketes.where(id: "#{params[:search]}%")
+    # else
+    #   @ticketes = @project.ticketes
+    # end
+    render "projects/show"
+  end
+
   def new
     @tickete = @project.ticketes.build
     authorize @tickete, :create?
