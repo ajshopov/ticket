@@ -5,6 +5,9 @@ class Tickete < ApplicationRecord
   has_many :attachments, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_and_belongs_to_many :tags, distinct: true
+  has_and_belongs_to_many :watchers, join_table: "tickete_watchers",
+    class_name: "User", distinct: true
+  
   attr_accessor :tag_names
 
   validates :name, presence: true
@@ -13,6 +16,7 @@ class Tickete < ApplicationRecord
   accepts_nested_attributes_for :attachments, reject_if: :all_blank
 
   before_create :assign_default_state
+  after_create :author_watches_me
 
   # searcher do
   #   label :tag, from: :tags, field: "name"
@@ -26,6 +30,12 @@ class Tickete < ApplicationRecord
   end
 
   private
+
+  def author_watches_me
+    if author.present? && !self.watchers.include?(author)
+      # self.watchers << author
+    end
+  end
 
   def assign_default_state
     self.state ||= State.default
