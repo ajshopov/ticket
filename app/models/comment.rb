@@ -13,6 +13,7 @@ class Comment < ApplicationRecord
   before_create :set_previous_state
   after_create :set_tickete_state
   after_create :associate_tags_with_tickete
+  after_create :author_watches_tickete
 
   private
 
@@ -30,6 +31,12 @@ class Comment < ApplicationRecord
       tag_names.split.each do |name|
         tickete.tags << Tag.find_or_create_by(name: name)
       end
+    end
+  end
+
+  def author_watches_tickete
+    if author.email.present? && !tickete.watchers.include?(author)
+      tickete.watchers << author
     end
   end
 end

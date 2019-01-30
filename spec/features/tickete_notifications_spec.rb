@@ -27,4 +27,21 @@ RSpec.feature "Users can receive notifications about tickete updates" do
     click_first_link_in_email(email)
     expect(current_path).to eq project_tickete_path(project, tickete)
   end
+
+  scenario "comment authors are automatically subscribed to a tickete" do
+    fill_in "Text", with: "Is it out yet?"
+    click_button "Create Comment"
+    click_link "Sign out"
+    
+    reset_mailer
+    
+    login_as(allan)
+    visit project_tickete_path(project, tickete)
+    fill_in "Text", with: "No it isn't"
+    click_button "Create Comment"
+
+    expect(page).to have_content "Comment has been created."
+    expect(unread_emails_for(bob.email).count).to eq 1
+    expect(unread_emails_for(allan.email).count).to eq 0
+  end
 end
