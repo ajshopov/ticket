@@ -1,6 +1,6 @@
 class TicketesController < ApplicationController
   before_action :set_project
-  before_action :set_tickete, only: [:show, :edit, :update, :destroy]
+  before_action :set_tickete, only: [:show, :edit, :update, :destroy, :watch]
 
   def search
     authorize @project, :show?
@@ -10,6 +10,18 @@ class TicketesController < ApplicationController
     #   @ticketes = @project.ticketes
     # end
     render "projects/show"
+  end
+
+  def watch
+    authorize @tickete, :show?
+    if @tickete.watchers.exists?(current_user.id)
+      @tickete.watchers.destroy(current_user)
+      flash[:notice] = "You are no longer watching this tickete."
+    else
+      @tickete.watchers << current_user
+      flash[:notice] = "You are now watching this tickete."
+    end
+    redirect_to project_tickete_path(@tickete.project, @tickete)
   end
 
   def new

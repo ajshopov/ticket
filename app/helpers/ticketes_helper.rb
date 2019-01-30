@@ -11,4 +11,14 @@ module TicketesHelper
       end
     end
   end
+
+  def toggle_watching_button(tickete)
+    text = if tickete.watchers.include?(current_user)
+      "Unwatch"
+    else
+      "Watch"
+    end
+    link_to text, watch_project_tickete_path(tickete.project, tickete),
+      class: text.parameterize, method: :post
+  end
 end
