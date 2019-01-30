@@ -1,1 +1,10 @@
+Hello
+
+<%= @tickete.name %> for <%= @project.name %> has been updated.
+
+<%= @comment.author.email %> wrote:
+
+<%= @comment.text %>
+
+You can view this at:
 <%= project_tickete_url(@project, @tickete) %>

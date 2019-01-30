@@ -32,8 +32,8 @@ class Tickete < ApplicationRecord
   private
 
   def author_watches_me
-    if author.present? && !self.watchers.include?(author)
-      # self.watchers << author
+    if author.email.present? && !self.watchers.include?(author)
+      self.watchers << author
     end
   end
 
