@@ -44,6 +44,7 @@ gem 'simple_form', '~> 4.1'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 
 gem 'actionpack', '~> 5.0', '>= 5.0.0.1'
+gem 'active_model_serializers', '~> 0.10.8'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
