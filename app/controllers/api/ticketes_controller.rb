@@ -1,7 +1,4 @@
-class API::TicketesController < ApplicationController
-  attr_reader :current_user
-
-  before_action :authenticate_user
+class API::TicketesController < API::ApplicationController
   before_action :set_project
 
   def show
@@ -10,12 +7,20 @@ class API::TicketesController < ApplicationController
     render json: @tickete
   end
 
+  def create
+    @tickete = @project.ticketes.build(tickete_params)
+    authorize @tickete, :create?
+    if @tickete.save
+      render json: @tickete, status: 201
+    else
+      render json: { errors: @tickete.errors.full_messages }, status: 422
+    end
+  end
+
   private
 
-  def authenticate_user
-    authenticate_with_http_token do |token|
-      @current_user = User.find_by(api_key: token)
-    end
+  def tickete_params
+    params.require(:tickete).permit(:name, :description, :author_id)
   end
 
   def set_project
