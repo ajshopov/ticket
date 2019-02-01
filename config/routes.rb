@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
     resources :projects, only: [:new, :create, :destroy]
     resources :users do
-      # member route
       member do
         patch :archive
       end
@@ -13,6 +12,12 @@ Rails.application.routes.draw do
       member do
         get :make_default
       end
+    end
+  end
+
+  namespace :api do
+    resources :projects, only: [] do
+      resources :ticketes
     end
   end
 
