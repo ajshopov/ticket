@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
+    namespace :v2 do
+      mount API::V2::Ticketes, at: "/projects/:project_id/ticketes"
+    end
+    
     resources :projects, only: [] do
       resources :ticketes
     end
